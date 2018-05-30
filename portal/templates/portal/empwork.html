@@ -1,0 +1,69 @@
+<div class="row queries" id="queriestab">
+	<div class="row">
+		<div class="section details" >
+			<ul class="collapsible popout with-header">
+				<li class="collection-header classheader">
+					<div class="row">
+						<div class="section description">
+							<div class="col s3">
+								<h6><u class="themecolor">Employee workspace</u></h6>
+									View/Add/Remove documents of employees
+							</div>	
+							<form action="{% url 'portal:userdocument' %}" method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+								<div class="input-field col s3">
+									<select name="emp" class="themecolor" multiple>
+										{% if employees %}
+											{% for employee in employees %}
+											<option value="{{ employee.id }}">{{ employee.get_full_name }}</option>
+											{% endfor %}
+										{% else %}
+											<option value="1">No employees present</option>
+										{% endif %}	
+									</select>
+									<label>Employees</label>
+								</div>
+								<div class="input-field col s3 zeromargintop">
+									<div class="file-field input-field themecolor">
+										<div class="btn askbutton">
+											<span>File</span>
+											<input type="file" name="myfile" required/>
+											</div>
+											<div class="file-path-wrapper">
+											<input class="file-path validate" type="text">
+										</div>	
+									</div>
+								</div>
+								<div class="col S2">
+									<button class="waves-effect waves-light btn-small askbutton addbuttonmargintop" type="submit">Save</button>
+								</div>
+							</form>		
+						</div>
+					</div>
+				</li>
+				<li>
+					<div id="querycollapsible" class="flowstyle" >
+						{% if employees %}
+							{% for employee in employees %}
+								<li class="collection-item" >
+									<div class="collapsible-header"><i class="Tiny material-icons themecolor">account_circle</i><a>{{ employee.get_full_name }}</a></div>
+									<div class="collapsible-body bodycolor">
+										{% for document in employee.get_document %}
+										<div class="{{ document.id }}">
+											<p><i class="Tiny material-icons themecolor">description</i>_{{ document.get_file_name }}<span class="right"><a href="{% url 'portal:downloaduserdoc' uid=document.id %}"><i class="Tiny material-icons themecolor downloadbutton">file_download</i></a><i class="Tiny material-icons chatbutton deletebutton smallleft" id="{{ document.id }}" tab="empwork" id="{{ document.id }}">delete_forever</i></span></p>
+										</div>
+
+										{% endfor %}
+									</div>
+								</li>
+							{% endfor %}
+						{% else %}
+							<h6>No Queries yet</h6>
+						{% endif %}	
+					</div>
+				</li>
+					
+			</ul>	
+		</div>
+	</div>
+</div>

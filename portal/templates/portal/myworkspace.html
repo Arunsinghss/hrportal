@@ -1,0 +1,50 @@
+<div class="row myworkspace" id="myworkspacetab">
+	<div class="row">
+		<div class="section details" >
+			<ul class="collapsible popout with-header">
+				<li class="collection-header classheader">
+					<div class="row">
+						<div class="section description">
+							<div class="col s3 ">
+								<h6><u class="themecolor">My workspace</u></h6>
+									Files related to you...
+							</div>	
+							<div class="col s9 minusmargintop">
+							<form action="{% url 'portal:userdocument' %}" method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+								<div class="input-field col s5 ">
+									<div class="file-field input-field themecolor">
+										<div class="btn askbutton">
+											<span>File</span>
+											<input type="file" name="myfile" required></input>
+											</div>
+											<div class="file-path-wrapper">
+											<input class="file-path validate" type="text">
+										</div>	
+									</div>
+								</div>
+								<div class="col S3">
+									<button class="waves-effect waves-light btn-small askbutton margintopthree" type="submit">Save</button>
+								</div>
+							</form>	</div>	
+						</div>
+					</div>
+				</li>
+				<li>
+					<div id="querycollapsible" class="flowstyle" >
+						{% if employee %}
+							{% for document in employee.get_document %}
+								<li class="collection-item" >
+									<div class="collapsible-header {{ document.id }}"><i class="tiny material-icons themecolor">description</i><span class="filetextwidth">{{ document.get_file_name }}.</span><a href="{% url 'portal:downloaduserdoc' uid=document.id %}"><i class="Tiny material-icons themecolor smallleft downloadbutton">file_download</i></a><i class="Tiny material-icons deletebutton " tab="mywork" id="{{ document.id }}">delete_forever</i></div>
+								</li>
+							{% endfor %}
+						{% else %}
+							<h6>No Queries yet</h6>
+						{% endif %}	
+					</div>
+				</li>
+					
+			</ul>	
+		</div>
+	</div>
+</div>

@@ -1,0 +1,84 @@
+<div class="row configure" id="configuretab">
+	<div class="col s7">
+		<div class="section description">
+			<h6><u class="themecolor">Employees</u></h6>
+			<p>add employees here...</p>
+			<div class="row">
+				<form action="{% url 'portal:adduser' %}" method="post" class="col s12">
+					{% csrf_token %}
+					<div class="row">
+						<div class="input-field col s3">
+							<input id="first_name" type="text" class="validate" name="firstname" required></input>
+							<label for="first_name">First Name</label>
+						</div>
+						<div class="input-field col s3">
+							<input id="last_name" type="text" class="validate" name="lastname" required></input>
+							<label for="last_name">Last Name</label>
+						</div>
+						<div class="input-field col s3">
+							<input id="username" type="text" class="validate" name="username" required></input>
+							<label for="username">Username</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s3">
+							<input id="password" type="text" class="validate" name="password" required></input>
+							<label for="password">Password</label>
+						</div>
+						<div class="input-field col s3">
+							<input id="email" type="text" class="validate" name="email" required></input>
+							<label for="email">Email</label>
+						</div>
+					</div>
+					<button class="waves-effect waves-light btn-small askbutton" type="submit">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s5">
+		<div class="section description">
+			<h6><u class="themecolor">Company Policies</u></h6>
+			<p>Add company policies here..</p>
+			<form action="{% url 'portal:uploadpolicy' %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="input-field col s8">
+					<select name="policy" class="existingpolicy">
+						<option value="" selected >Update existing policy</option>
+						{% for policy in policies %}
+							<option value="{{ policy.id }}">{{ policy.get_file_name }}</option>
+						{% endfor %}
+					</select>
+				<label>Exisiting policies</label>
+				</div>
+				<div class="input-field col s8">
+					<div class="file-field input-field themecolor">
+						<div class="btn askbutton uploadfile  waves-light btn-small">
+							<span>File</span>
+							<input type="file" name="myfile" required/>
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text">
+						</div>	
+					</div>
+				</div>
+				<div class="col">
+					<div class="input-field col s4">
+						<input type="text" name="startdate" class="datepicker" required>
+						<label for="startdate">Start date</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" name="enddate" class="datepicker" required>
+						<label for="enddate">End date</label>
+					</div>
+					<div class="input-field col s4">
+						<input id="version" type="text" name="version" required></input>
+						<label for="version">Version</label>
+					</div>	
+				<div>
+					<button class="waves-effect waves-light btn-small askbutton " type="submit">Save</button>
+				</div>
+			</form>	
+		</div>
+	</div>
+</div>

@@ -1,0 +1,82 @@
+<div class="row myqueries" id="myqueriestab">
+	<div class="row">
+		<div class="section details" >	
+			<ul class="collapsible popout with-header">
+				<li class="collection-header classheader ">
+					<div class="row">
+						<div class="section description">
+							<div class="col s5 marginbottomtwo">
+								<h6><u class="themecolor">Your Queries</u></h6>
+									Questions asked by you...
+							</div>	
+							<!-- <form action="{% url 'portal:addquestion' tab=1%}" method="post">
+								{% csrf_token %}
+								<div class="input-field col s3">
+									<input id="first_name" type="text" class="validate" name="question" required></input>
+									<label for="first_name">Ask here...</label>
+								</div>
+								<div class="col S2">
+									<button class=" waves-effect waves-light btn-small askbutton addbuttonmargintop" type="submit">Add</button>
+								</div>
+							</form>	 -->	
+						</div>
+					</div>
+				</li>
+				<li>
+					<div id="querycollapsible" class="flowstyle">
+						{% if myconversations %}
+							{% for question,answers in myconversations.items %}
+								<li class="collection-item">
+									<div class="collapsible-header"><b class="resolved">{{ question.question }}?</b>
+										{% if question.is_resolved %}
+											<i class="Tiny material-icons themecolor">star</i>
+										{% else %}
+											<i class="Tiny material-icons resolve" id="{{ question.id }}">star_border</i>
+										{% endif %}
+									</div>
+									<div class="collapsible-body bodycolor">
+										{% for answer in answers %}
+										<span>re : {{ answer.answer }}</span>
+										<p>
+											<i class="Tiny material-icons themecolor">tag_faces</i><a>_{{ answer.get_full_name }}</a>
+											<span id="{{ answer.id }}" class="bigmarginlike" style="margin-left: 46em;">
+												<label for="{{ answer.id }}" class="like themecolor">{{ answer.likes }}</label>
+												<i class="material-icons likebutton dropdown-trigger" tab="allqueries" id="{{ answer.id }}" name="{{ answer.likes }}"  data-target="{{ answer.id }}">thumb_up</i><label for="{{ answer.get_comment_count }}" class="comment {{ answer.id }} themecolor smallleft">{{ answer.get_comment_count }}</label><i class="material-icons chatbutton comment modal-trigger" name="{{ answer.get_comment_count }}" id="{{answer.id}}">chat</i>
+											</span>
+										</p>
+											<div class="bottom-sheet modal {{ answer.id }}">
+												<ul>
+													<li><h6 class="themecolor smallleft commentheader"><u>Comments:</u></h6></li>
+													<div class="divider"></div>
+												</ul>	
+												<ul class="smallleft">
+													<div class="commentlist">
+														{% for comment in answer.get_comment %}
+															<li class="commentlistpadding">
+																{{ comment.comment }}<a>@{{ comment.commented_by.get_full_name }}</a>
+															</li>
+															<div class="divider"></div>
+														{% endfor %}
+													</div>	
+													<div class="row commentfeed commentmargintop">
+														<div class="input-field col s10">
+															<textarea id="commentfeed" class="materialize-textarea commentbox {{ answer.id }}" data-length="300"></textarea>
+															<label for="commentfeed">comment</label>
+														</div>
+														<button class="waves-effect waves-light btn-small askbutton addbuttonmargintop commentbutton" answerid="{{ answer.id }}">comment</button>
+													</div>
+												</ul>
+											</div>
+										{% endfor %}
+									</div>
+								</li>
+							{% endfor %}
+						{% else %}
+							<h6>No Queries yet</h6>
+						{% endif %}	
+					</div>
+				</li>	
+			</ul>	
+		</div>
+	</div>
+</div>

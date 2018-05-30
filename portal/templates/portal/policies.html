@@ -1,0 +1,64 @@
+<div class="row policies" id="mypoliciestab">
+	<div class="row s3 ">
+		<ul class="collapsible popout with-header ">
+				<li class="collection-header classheader policyheader">
+					<div class="row">
+						<div class="section description">
+							<div class="col s5">
+								<h6><u class="themecolor">Policies</u></h6>
+									Your Company policies...
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>	
+	</div>
+	<div class="row s9 onemargintop">
+		<div class="section details" >
+			<div id="querycollapsible" class="flowstyle">
+				{% if policies %}
+				<ul class="collapsible">
+					{% for policy in policies %}
+						<li>
+							<div class="collapsible-header"><i class="tiny material-icons themecolor">import_contacts</i><span class="filetextwidth">{{ policy.get_file_name }}<a> --v{{ policy.version }}</a></span><a href="{% url 'portal:download' pid=policy.id %}"><i class="Tiny material-icons themecolor downloadbutton">file_download</i></a><span id="{{ policy.id }}">
+							<label for="{{ policy.id }}" class="themecolor like">{{ policy.likes }}</label>
+							<i class="material-icons likebutton dropdown-trigger" tab="policies" id="{{ policy.id }}" name="{{ policy.likes }}" data-target="{{ policy.id }}">thumb_up</i>
+							<label class="themecolor policycomment {{ policy.id }}" for="{{ policy.get_comment_count }}">{{ policy.get_comment_count }}</label>
+							<i class="material-icons comment modal-trigger policycommentbutton" name="{{ policy.get_comment_count }}" id="{{ policy.id }}">chat</i>
+						</li>
+						<div class="bottom-sheet policymodal modal {{ policy.id }}">
+							<ul>
+								<li><h6 class="themecolor smallleft commentheader"><u>Comments:</u></h6></li>
+								<div class="divider"></div>
+							</ul>	
+							<ul class="smallleft">
+								<div class="commentlist">
+									{% for comment in answer.get_comment %}
+										<li class="commentlistpadding">
+											{{ comment.comment }}<a>@{{ comment.commented_by.get_full_name }}</a>
+										</li>
+										<div class="divider"></div>
+									{% endfor %}
+								</div>	
+								<div class="row commentfeed commentmargintop">
+									<div class="input-field col s10">
+										<textarea id="commentfeed" class="materialize-textarea commentbox {{ policy.id }}" data-length="300"></textarea>
+										<label for="commentfeed">comment</label>
+									</div>
+									<button class="waves-effect waves-light btn-small askbutton addbuttonmargintop policycomment" policyid="{{ policy.id }}">comment</button>
+								</div>
+							</ul>
+						</div>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<h6>No Company policies</h6>
+				{% endif %}	
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

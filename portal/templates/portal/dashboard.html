@@ -1,0 +1,142 @@
+{% load i18n %}
+{% load l10n %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="{% static 'portal/css/main.css' %}" rel="stylesheet"  type="text/css">
+		<link href="{% static 'portal/css/materialize.css' %}" rel="stylesheet"  type="text/css">
+		<link href="{% static 'portal/css/materialize.min.css' %}" rel="stylesheet"  type="text/css">	
+		<script src="{% static 'portal/js/jquery-3.2.1.min.js' %}"></script>
+		<script src="{% static 'portal/js/portal.js' %}"></script>
+		<script type="text/javascript" src="{% static 'portal/js/materialize.js' %}"></script>
+	</head>
+
+	<body>
+		<div class="ns-administrator-wrapper">
+			<nav>
+				<div class="nav-wrapper">
+					<a href="#" class="brand-logo logoleft">
+						<i class="large material-icons md logoleft">slow_motion_video</i><u><p class="hrportal">HR-PORTAL</p></u>
+					</a>
+					<ul class="right hide-on-med-and-down">
+					<li><a class="dropdown-trigger" href="{%  url 'portal:logout' %}" data-target="dropdown1">Logout</a></li>
+				</div>
+			</nav>
+			{% csrf_token %}
+			<div class="col s12 ">
+				<ul class="tabs tabs-fixed-width" id="tabs-swipe-demo">
+
+					{% if tab == "queries" %}
+						{% if is_admin %}
+							<li class="tab col s2 taballqueries"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='queries' %}"><i class="small material-icons querytop">question_answer</i></a></li>
+						{% else %}
+							<li class="tab col s3 taballqueries"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='queries' %}"><i class="small material-icons querytop">question_answer</i></a></li>
+						{% endif %}
+					{% else %}
+						{% if is_admin %}
+							<li class="tab col s2 taballqueries"><a target="_self"  href="{% url 'portal:dashboard' tab='queries' %}"><i class="small material-icons querytop">question_answer</i></a></li>
+						{% else %}
+							<li class="tab col s3 taballqueries"><a target="_self"  href="{% url 'portal:dashboard' tab='queries' %}"><i class="small material-icons querytop">question_answer</i></a></li>
+						{% endif %}
+					{% endif %}
+
+
+					{% if tab == "myqueries" %}
+						{% if is_admin %}
+							<li class="tab col s2 tabmyqueries"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='myqueries' %}">My Queries</a></li>
+						{% else %}
+							<li class="tab col s3 tabmyqueries"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='myqueries' %}">My Queries</a></li>
+						{% endif %}
+					{% else %}
+						{% if is_admin %}
+							<li class="tab col s2 tabmyqueries"><a target="_self" href="{% url 'portal:dashboard' tab='myqueries' %}">My Queries</a></li>
+						{% else %}
+							<li class="tab col s3 tabmyqueries"><a target="_self" href="{% url 'portal:dashboard' tab='myqueries' %}">My Queries</a></li>
+						{% endif %}
+					{% endif %}	
+
+
+					{% if tab == "policies" %}
+						{% if is_admin %}
+							<li class="tab col s2 tabpolicies"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='policies' %}">Policies</a></li>
+						{% else %}
+							<li class="tab col s3 tabpolicies"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='policies' %}">Policies</a></li>
+						{% endif %}
+					{% else %}
+						{% if is_admin %}
+							<li class="tab col s2 tabpolicies"><a target="_self" href="{% url 'portal:dashboard' tab='policies' %}">Policies</a></li>
+						{% else %}
+							<li class="tab col s3 tabpolicies"><a target="_self" href="{% url 'portal:dashboard' tab='policies' %}">Policies</a></li>
+						{% endif %}
+					{% endif %}
+
+
+					{% if tab == "mywork" %}
+						{% if is_admin %}
+							<li class="tab col s2 tabmyworkspace"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='mywork' %}">My Workspace</a></li>
+						{% else %}
+							<li class="tab col s3 tabmyworkspace"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='mywork' %}">My Workspace</a></li>
+						{% endif %}
+					{% else %}
+						{% if is_admin %}
+							<li class="tab col s2 tabmyworkspace"><a target="_self" href="{% url 'portal:dashboard' tab='mywork' %}">My Workspace</a></li>
+						{% else %}
+							<li class="tab col s3 tabmyworkspace"><a target="_self" href="{% url 'portal:dashboard' tab='mywork' %}">My Workspace</a></li>
+						{% endif %}
+					{% endif %}
+
+
+					{% if is_admin %}
+						{% if tab == "empwork" %}
+							<li class="tab col s2 tabempworkspace"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='empwork' %}">Employee Workspace</a></li>
+						{% else %}
+							<li class="tab col s2 tabempworkspace"><a target="_self" href="{% url 'portal:dashboard' tab='empwork' %}">Employee Workspace</a></li>
+						{% endif %}
+						{% if tab == "configure" %}
+								<li class="tab col s2 tabconfigure"><a target="_self" class="active" href="{% url 'portal:dashboard' tab='configure' %}"><i class="small material-icons querytop">perm_data_setting</i></a></li>
+						{% else %}
+							<li class="tab col s2 tabconfigure"><a target="_self" href="{% url 'portal:dashboard' tab='configure' %}"><i class="small material-icons querytop">perm_data_setting</i></a></li>
+						{% endif %}	
+					{% endif %}	
+
+				</ul>
+			</div>			
+			<div>
+				{% if tab == "queries" %}	
+					{% include "portal/queries.html" %}
+				{% endif %}
+
+				{% if tab == "myqueries" %}	
+					{% include "portal/myqueries.html" %}
+				{% endif %}
+
+				{% if tab == "policies" %}	
+					{% include "portal/policies.html" %}
+				{% endif %}
+
+				{% if tab == "mywork" %}
+					{% include "portal/myworkspace.html" %}
+				{% endif %}
+
+				{% if tab == "empwork" %}	
+					{% include "portal/empwork.html" %}
+				{% endif %}
+
+				{% if tab == "configure" %}	
+					{% include "portal/configure.html" %}
+				{% endif %}	
+			</div>
+			<!-- <div class="container footerstyle">
+				<footer class="page-footer footerpadding">
+					<div class="footer-copyright">
+						<div class="container">
+							© 2018 Copyright Text
+						</div>
+					</div>
+				</footer>
+			</div> -->
+		</div>	
+	</body>
+</html>

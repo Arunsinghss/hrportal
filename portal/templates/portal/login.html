@@ -1,0 +1,92 @@
+{% extends "portal/base.html" %}
+{% block template %}
+	<div class = "container">
+		<form action="{% url 'portal:validate' %}" method="post">
+		{% csrf_token %}		
+			<div class="row login">
+				<div class="col s12">
+					<div class="row">
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+									<i class="material-icons prefix">account_circle</i>
+									<input id="username" type="text" class="validate" name="username">
+									<label for="icon_prefix">Username</label>
+								</div>
+							</div>	
+							<div class="row">
+								<div class="input-field col s12">
+									<i class="material-icons prefix">lock_outline</i>
+									<input id="password" type="password" class="validate" name="password">
+									<label for="icon_telephone">Password</label>
+								</div>
+							</div>
+							<div class="row">
+								<button class="btn waves-effect waves-light loginleft" type="submit" id="login">LOGIN
+									<i class="material-icons right">send</i>
+								</button>
+								<!-- <a class="btn waves-effect waves-light signupleft"  id="signup">New User
+								</a> -->
+							</div>	
+						</form>
+					</div>
+				</div>
+			</div>	
+		</form>	
+		<form action="{% url 'portal:adduser' %}" method="post">
+		{% csrf_token %}
+		
+			<div class="row signup signupcss">
+				<div class="col s12">
+					<div class="row">
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s11">
+									<i class="material-icons prefix">account_circle</i>
+									<input id="uname" type="text" class="validate" name="user_name">
+									<label for="icon_prefix">Username</label>
+								</div>
+							<!-- </div>
+							<div class="row"> -->
+								<div class="input-field col s11">
+									<i class="material-icons prefix">account_circle</i>
+									<input id="fname" type="text" class="validate" name="first_name">
+									<label for="icon_prefix">Firstname</label>
+								</div>
+							</div>	
+							<div class="row">
+								<div class="input-field col s11">
+									<i class="material-icons prefix">lock_outline</i>
+									<input id="lname" type="text" class="validate" name="last_name">
+									<label for="icon_telephone">Lastname</label>
+								</div>
+							<!-- </div>
+							<div class --><!-- ="row"> -->
+								<div class="input-field col s11">
+									<i class="material-icons prefix">account_circle</i>
+									<input id="emailid" type="text" class="validate" name="email_id">
+									<label for="icon_prefix">Email</label>
+								</div>
+							</div>	
+							<div class="row">
+								<div class="input-field col s11">
+									<i class="material-icons prefix">lock_outline</i>
+									<input id="passwd" type="password" class="validate" name="passwd">
+									<label for="icon_telephone">Password</label>
+								</div>
+							</div>
+							<div class="row">
+								<button class="btn waves-effect waves-light loginleft" id="ssignup">SIGN-UP
+									<i class="material-icons right">send</i>
+								</button>
+								<a class="btn waves-effect waves-light signuploginleft"  id="slogin">LOGIN
+									<i class="material-icons right">send</i>
+								</a>
+							</div>	
+						</form>
+					</div>
+				</div>
+			</div>
+		</form>	
+	</div>	
+{% endblock template %}

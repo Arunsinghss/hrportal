@@ -1,0 +1,289 @@
+<div class="row queries" id="queriestab">
+	<div class="col s3">
+		<div class="section description">
+			<h6><u class="themecolor">Queries</u></h6>
+			<p>Ask your question here...</p>
+			<div class="askempques">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<textarea id="textarea1" class="materialize-textarea" data-length="200"></textarea>
+							<label for="textarea1">Ask here..</label>
+						</div>
+					</div>
+					<a class="waves-effect waves-light btn-small askbutton">Submit</a>
+				</form>
+			</div>	
+		</div>
+	</div>
+	<div class="col s9 onemargintop">
+		<div class="section details" >
+			<div id="querycollapsible" class="flowstyle">
+				{% if conversations %}
+				<ul class="collapsible popout">
+					{% for question,answers in conversations.items %}
+						<li>
+							<div class="collapsible-header">{{ question.question }}?</div>
+							<div class="collapsible-body">
+								{% for answer in answers %}
+								<span>{{ answer.answer }}</span>
+								<p><i class="Tiny material-icons">tag_faces</i>_{{ answer.get_full_name }}								<span class="right"><i class="Tiny material-icons likebutton">thumb_up</i><i class="Tiny material-icons chatbutton smallleft">chat</i></span></p>
+
+								{% endfor %}
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<h6>No Queries yet</h6>
+				{% endif %}	
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row myqueries" id="myqueriestab">
+	<div class="col s3">
+		<div class="section description">
+			<h6><u class="themecolor">Your Queries</u></h6>
+			<p>Ask your question here...</p>
+			<div class="askempques">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<textarea id="textarea2" class="materialize-textarea" data-length="200"></textarea>
+							<label for="textarea2">Ask here..</label>
+						</div>
+					</div>
+					<a class="waves-effect waves-light btn-small askbutton">Submit</a>
+				</form>
+			</div>	
+		</div>
+	</div>
+	<div class="col s9 onemargintop">
+		<div class="section details" >
+			<div id="querycollapsible" class="flowstyle">
+				{% if myconversations %}
+				<ul class="collapsible popout">
+					{% for question,answers in myconversations.items %}
+						<li>
+							<div class="collapsible-header">{{ question.question }} ?</div>
+							<div class="collapsible-body">
+								{% for answer in answers %}
+								<span>{{ answer.answer }}</span>
+								<p><i class="Tiny material-icons">tag_faces</i>_{{ answer.get_full_name }}								<span class="right"><i class="Tiny material-icons likebutton">thumb_up</i><i class="Tiny material-icons chatbutton smallleft">chat</i></span></p>
+
+								{% endfor %}
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<h6>No Queries yet</h6>
+				{% endif %}	
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row policies" id="mypoliciestab">
+	<div class="col s3">
+		<div class="section description">
+			<h6><u class="themecolor">Policies</u></h6>
+			<p>Your company policies...</p>
+		</div>
+	</div>
+	<div class="col s9 onemargintop">
+		<div class="section details" >
+			<div id="querycollapsible" class="flowstyle">
+				{% if conversations %}
+				<ul class="collapsible popout">
+					{% for question,answers in conversations.items %}
+						<li>
+							<div class="collapsible-header"><i class="tiny material-icons themecolor">domain</i><span class="filetextwidth">{{ question.question }}.</span><i class="Tiny material-icons likebutton">file_download</i><i class="Tiny material-icons likebutton smallleft">thumb_up</i><i class="Tiny material-icons chatbutton smallleft">chat</i></div>	
+						</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<h6>No Queries yet</h6>
+				{% endif %}	
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row myworkspace" id="myworkspacetab">
+	<div class="col s3">
+		<div class="section description">
+			<h6><u class="themecolor">My workspace</u></h6>
+			<p>Files related to you...</p>
+			<div class="input-field col s11">
+				<div class="file-field input-field themecolor">
+					<div class="btn askbutton">
+						<span">File</span>
+						<input type="file">
+						</div>
+						<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>	
+				</div>
+				<a class="waves-effect waves-light btn-small askbutton">Save</a>
+			</div>
+		</div>
+	</div>
+	<div class="col s9 onemargintop">
+		<div class="section details" >
+			<div id="querycollapsible" class="flowstyle">
+				{% if conversations %}
+				<ul class="collapsible popout">
+					{% for question,answers in conversations.items %}
+						<li>
+							<div class="collapsible-header"><i class="tiny material-icons themecolor">description</i><span class="filetextwidth">{{ question.question }}.</span><i class="Tiny material-icons likebutton">file_download</i><i class="Tiny material-icons likebutton smallleft">delete_forever</i>
+						</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<h6>No Queries yet</h6>
+				{% endif %}	
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row empworkspace" id="empworkspacetab">
+	<div class="col s3">
+		<div class="section description">
+			<h6><u class="themecolor">Employee workspace</u></h6>
+			<p>View/Add/Remove documents of employees</p>
+			<div class="input-field col s11">
+				<select multiple>
+					<option value="1">Option 1</option>
+					<option value="2">Option 2</option>
+					<option value="3">Option 3</option>
+				</select>
+				<label>Employees</label>
+				<div class="file-field input-field themecolor">
+					<div class="btn askbutton">
+						<span">File</span>
+						<input type="file">
+						</div>
+						<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>	
+				</div>
+				<a class="waves-effect waves-light btn-small askbutton">Save</a>
+			</div>
+		</div>
+	</div>
+	<div class="col s9 onemargintop">
+		<div class="section details">
+			<div id="querycollapsible" class="flowstyle">
+				{% if conversations %}
+				<ul class="collapsible popout">
+					{% for question,answers in conversations.items %}
+						<li>
+							<div class="collapsible-header"><span><i class="Tiny material-icons">account_circle</i></span>emp_name</div>
+							<div class="collapsible-body">
+								{% for answer in answers %}
+								<!-- <span>{{ answer.answer }}</span> -->
+								<p><i class="Tiny material-icons">description</i>_{{ answer.get_full_name }}								<span class="right"><i class="Tiny material-icons likebutton">file_download</i><i class="Tiny material-icons chatbutton smallleft">delete_forever</i></span></p>
+
+								{% endfor %}
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<h6>No Queries yet</h6>
+				{% endif %}	
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="row configure" id="configuretab">
+	<div class="col s7">
+		<div class="section description">
+			<h6><u class="themecolor">Employees</u></h6>
+			<p>add employees here...</p>
+			<div class="row">
+				<form action="{% url 'portal:adduser' %}" method="post" class="col s12">
+					{% csrf_token %}
+					<div class="row">
+						<div class="input-field col s3">
+							<input id="last_name" type="text" class="validate" name="firstname"></input>
+							<label for="last_name">First Name</label>
+						</div>
+						<div class="input-field col s3">
+							<input id="last_name" type="text" class="validate" name="lastname"></input>
+							<label for="last_name">Last Name</label>
+						</div>
+						<div class="input-field col s3">
+							<input id="last_name" type="text" class="validate" name="username"></input>
+							<label for="last_name">Username</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s3">
+							<input id="last_name" type="text" class="validate" name="password"></input>
+							<label for="last_name">Password</label>
+						</div>
+						<div class="input-field col s3">
+							<input id="last_name" type="text" class="validate" name="email"></input>
+							<label for="last_name">Email</label>
+						</div>
+					</div>
+					<button class="btn waves-effect waves-light" type="submit" name="action">Save
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s5">
+		<div class="section description">
+			<h6><u class="themecolor">Company Policies</u></h6>
+			<p>Add company policies here..</p>
+			<div class="input-field col s11">
+				<div class="file-field input-field themecolor">
+					<div class="btn askbutton uploadfile">
+						<span>File</span>
+						<input type="file">
+						</div>
+						<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>	
+				</div>
+				<a class="waves-effect waves-light btn-small askbutton">Save</a>
+			</div>
+		</div>
+	</div>
+	<div class="col s9 onemargintop">
+		<div class="section details">
+			<div id="querycollapsible" class="flowstyle">
+				{% if conversations %}
+				<ul class="collapsible popout">
+					{% for question,answers in conversations.items %}
+						<li>
+							<div class="collapsible-header"><span><i class="Tiny material-icons">account_circle</i></span>emp_name</div>
+							<div class="collapsible-body">
+								{% for answer in answers %}
+								<span>{{ answer.answer }}</span>
+								<p>
+									<i class="Tiny material-icons">description</i>_{{ answer.get_full_name }}
+									<span class="right"><i class="Tiny material-icons likebutton">file_download</i><i class="Tiny material-icons chatbutton smallleft">delete_forever</i></span>
+								</p>
+								{% endfor %}
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<h6>No Queries yet</h6>
+				{% endif %}	
+			</div>
+		</div>
+
+	</div>
+</div>

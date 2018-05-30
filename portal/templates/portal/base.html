@@ -1,0 +1,39 @@
+{% load i18n %}
+{% load l10n %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="{% static 'portal/css/main.css' %}" rel="stylesheet"  type="text/css">
+		<link href="{% static 'portal/css/materialize.css' %}" rel="stylesheet"  type="text/css">
+		<link href="{% static 'portal/css/materialize.min.css' %}" rel="stylesheet"  type="text/css">	
+
+		<script src="{% static 'portal/js/jquery-3.2.1.min.js' %}"></script>
+		<script src="{% static 'portal/js/portal.js' %}"></script>
+		<script type="text/javascript" src="{% static 'portal/js/materialize.js' %}"></script>
+	</head>
+
+	<body style="background-color: #FFFFF0 !important;">
+		<div class="ns-administrator-wrapper">
+			<nav>
+				<div class="nav-wrapper">
+					<a href="#" class="brand-logo logoleft">
+						<i class="large material-icons logoleft">assignment</i><p class="hrportal">HR-PORTAL</p>
+					</a>
+				</div>
+			</nav>
+			{% block template %}
+			{% endblock template %}
+			<!-- <div class="container footerpanel">
+			<footer class="page-footer">
+				<div class="footer-copyright">
+					<div class="container">
+						© 2018 Copyright Text
+					</div>
+				</div>
+			</footer>
+			</div>	 -->
+		</div>
+	</body>
+</html>

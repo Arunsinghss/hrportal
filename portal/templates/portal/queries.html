@@ -1,0 +1,115 @@
+
+<div class="row queries" id="queriestab">
+	<div class="row">
+		<div class="section details" id="listId" >
+			<ul class="collapsible popout with-header list">
+				<li class="collection-header classheader">
+					<div class="row">
+						<div class="section description">
+							<div class="col s5">
+								<h6><u class="themecolor">Queries</u></h6>
+									Ask your question here...
+							</div>	
+							<form action="{% url 'portal:addquestion' tab='queries' %}" method="post">
+								{% csrf_token %}
+								<div class="input-field col s3">
+									<input id="first_name" type="text" class="validate" name="question" required></input>
+									<label for="first_name">Ask here...</label>
+								</div>
+								<div class="col S2">
+									<button class=" waves-effect waves-light btn-small askbutton addbuttonmargintop" type="submit">Add</button>
+								</div>
+							</form>		
+						</div>
+					</div>
+				</li>
+				<li>
+					<div id="querycollapsible" class="flowstyle" >
+						{% if conversations %}
+							{% for question,answers in conversations.items %}
+								<li class="collection-item" >
+									<div class="collapsible-header"><b class="resolved">{{ question.question }}?</b>
+										{% if question.is_resolved %}
+											<i class="Tiny material-icons themecolor">star</i>
+										{% else %}
+											<i class="Tiny material-icons resolve" id="{{ question.id }}">star_border</i>
+										{% endif %}		
+									</div>
+									<div class="collapsible-body bodycolor">
+										<div class="bodyanswer">
+										{% for answer in answers %}
+											<span>re : {{ answer.answer }}</span>
+											<p>
+												<i class="Tiny material-icons themecolor">tag_faces</i>_
+												<a class="resolved">{{ answer.get_full_name }}</a>
+												<span id="{{ answer.id }}" class="bigmarginlike" style="margin-left:46em;">
+												<label for="{{ answer.id }}" class="themecolor like">{{ answer.likes }}</label>
+												<i class="material-icons likebutton" tab="queries" id="{{ answer.id }}" name="{{ answer.likes }}" data-target="{{ answer.id }}">thumb_up</i>
+												<label for="{{ answer.get_comment_count }}" class="themecolor comment {{answer.id}} smallleft">{{ answer.get_comment_count }}</label>
+												<i class="material-icons chatbutton comment " name="{{ answer.get_comment_count }}" id="{{answer.id}}">chat</i></span>
+
+											</p>
+
+											<div class="bottom-sheet modal {{ answer.id }}">
+												<ul>
+													<li><h6 class="themecolor smallleft commentheader"><u>Comments:</u></h6></li>
+													<div class="divider"></div>
+												</ul>	
+												<ul class="smallleft">
+													<div class="commentlist">
+														{% for comment in answer.get_comment %}
+															<li class="commentlistpadding">
+																{{ comment.comment }}<a>@{{ comment.commented_by.get_full_name }}</a>
+															</li>
+															<div class="divider"></div>
+														{% endfor %}
+													</div>	
+													<div class="row commentfeed commentmargintop">
+														<div class="input-field col s10">
+															<textarea id="commentfeed" class="materialize-textarea commentbox {{ answer.id }}" data-length="300"></textarea>
+															<label for="commentfeed">comment</label>
+														</div>
+														<button class="waves-effect waves-light btn-small askbutton addbuttonmargintop commentbutton" answerid="{{ answer.id }}">comment</button>
+													</div>
+												</ul>
+											</div>
+																				
+										{% endfor %}
+										</div>	
+										<div class="row feed">
+											<div class="input-field col s10">
+												<textarea id="feed" class="materialize-textarea replybox" data-length="300"></textarea>
+												<label for="feed">Reply</label>
+											</div>
+											<button class="waves-effect waves-light btn-small askbutton addbuttonmargintop answer" id="{{ question.id }}">Reply</button>
+										</div>
+									</div>
+								</li>
+							{% endfor %}
+
+							<!-- div class="pagination">
+    <span class="step-links">
+        {% if conversat.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ conversat.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ conversat.number }} of {{ conversat.paginator.num_pages }}.
+        </span>
+
+        {% if conversat.has_next %}
+            <a href="?page={{ conversat.next_page_number }}">next</a>
+            <a href="?page={{ conversat.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div> -->
+						{% else %}
+							<h6>No Queries yet</h6>
+						{% endif %}	
+					</div>
+				</li>	
+			</ul>
+		</div>
+	</div>
+</div>
